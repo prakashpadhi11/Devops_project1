@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Small Sample Webpage</title>
+  <style>
+    :root{--bg:#f7f7fb;--card:#fff;--accent:#0b76ef;--text:#111}
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:24px}
+    .container{max-width:800px;margin:0 auto}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(20,20,50,0.06)}
+    h1{margin:0 0 6px 0;font-size:1.4rem}
+    p.lead{margin:0 0 12px 0;color:#444}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none}
+    footer{margin-top:18px;text-align:center;color:#666;font-size:0.9rem}
+    .flex{display:flex;gap:12px;align-items:center}
+    input,textarea{width:100%;padding:10px;border:1px solid #e6e6ea;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <strong>My Site</strong>
+      <nav class="flex">
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="card">
+      <h1>Welcome!</h1>
+      <p class="lead">This is a tiny, clean HTML example — perfect for learning or starting a small project.</p>
+
+      <section>
+        <h2>Quick Interactive</h2>
+        <p>Click the button to show a friendly message.</p>
+        <button id="greet" class="btn">Say Hello</button>
+        <p id="msg" style="margin-top:12px"></p>
+      </section>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid #f0f0f3">
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <form onsubmit="handleSubmit(event)">
+          <label>Name</label>
+          <input id="name" required placeholder="Your name">
+          <label style="margin-top:8px;display:block">Message</label>
+          <textarea id="message" rows="4" placeholder="Say hi!"></textarea>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button type="submit" class="btn">Send</button>
+            <button type="button" onclick="resetForm()" style="padding:10px 14px;border-radius:8px;border:1px solid #ddd;background:#fff">Reset</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      Built with ♥ — small static HTML file
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('greet').addEventListener('click',()=>{
+      const h = new Date().getHours();
+      const part = h<12? 'Good morning' : h<18? 'Good afternoon' : 'Good evening';
+      document.getElementById('msg').textContent = `${part}! Hope you're having a great day.`;
+    });
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'Friend';
+      alert('Thanks, ' + name + '! Your message was sent. (Demo)');
+      resetForm();
+    }
+    function resetForm(){
+      document.getElementById('name').value='';
+      document.getElementById('message').value='';
+    }
+  </script>
+</body>
+</html>
